@@ -1,7 +1,5 @@
 package models
 
-//import "gorm.io/gorm"
-
 type Employee struct {
 	ID   uint   `gorm:"primaryKey"`
 	Name string `gorm:"type:text;not null"`

@@ -1,7 +1,5 @@
 package models
 
-// import "gorm.io/gorm"
-
 type AssignmentToTrip struct {
 	ID             uint `gorm:"primaryKey"`
 	MoneySpent     int `gorm:"not null"`

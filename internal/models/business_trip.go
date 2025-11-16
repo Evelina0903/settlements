@@ -1,10 +1,6 @@
 package models
 
-import (
-	"time"
-
-	// "gorm.io/gorm"
-)
+import "time"
 
 type BusinessTrip struct {
 	ID          uint       `gorm:"primaryKey"`
