@@ -1,16 +1,12 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 	"os"
+
+	"TP_Andreev/internal/transport/http/controller"
+	"TP_Andreev/internal/transport/http/router"
 )
-
-var tpl = template.Must(template.ParseFiles("index.html"))
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	tpl.Execute(w, nil)
-}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -18,8 +14,15 @@ func main() {
 		port = "3000"
 	}
 
-	mux := http.NewServeMux()
+	// Initialize router
+	r := router.New()
 
-	mux.HandleFunc("/", indexHandler)
-	http.ListenAndServe(":"+port, mux)
+	// Initialize controller
+	pageCtrl := &controller.MainController{}
+
+	// Register routes
+	r.GET("/", pageCtrl.GetMainPage)
+
+	// Start server
+	http.ListenAndServe(":"+port, r)
 }
