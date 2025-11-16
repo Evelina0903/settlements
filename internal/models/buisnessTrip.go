@@ -1,15 +1,12 @@
 package models
 
-import (
-	"time"
+import "gorm.io/gorm"
 
-	"gorm.io/gorm"
-)
-
-type BuisnessTrip struct {
+type BusinessTrip struct {
 	gorm.Model
-	ID          uint `gorm:"primaryKey"`
-	Destination string
-	StartAt     time.Time
-	EndAt       time.Time
+	ID        uint   `gorm:"primaryKey"`
+	Destination string `gorm:"type:text;not null"`
+	StartAt   string `gorm:"type:date;not null"`
+	EndAt     string `gorm:"type:date;not null"`
+	Employees []Employee `gorm:"many2many:assignment_to_trip;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
