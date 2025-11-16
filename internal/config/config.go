@@ -2,8 +2,11 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -25,6 +28,10 @@ type DatabaseConfig struct {
 
 // Load reads configuration from environment variables
 func Load() (*Config, error) {
+	if err := godotenv.Load(); err != nil {
+        log.Print("No .env file found")
+    }
+
 	dbPort, err := strconv.Atoi(getEnv("DB_PORT", "5432"))
 	if err != nil {
 		return nil, fmt.Errorf("invalid DB_PORT: %w", err)
@@ -35,11 +42,11 @@ func Load() (*Config, error) {
 			Port: getEnv("PORT", "3000"),
 		},
 		Database: DatabaseConfig{
-			Host:     getEnv("DB_HOST", "localhost"),
+			Host:     getEnv("DB_HOST", "postgres"),
 			Port:     dbPort,
 			User:     getEnv("DB_USER", "postgres"),
 			Password: getEnv("DB_PASSWORD", "postgres"),
-			Name:     getEnv("DB_NAME", "tp_andreev"),
+			Name:     getEnv("DB_NAME", "database"),
 		},
 	}
 
