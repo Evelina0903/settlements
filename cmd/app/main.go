@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
 
+	"TP_Andreev/internal/config"
 	"TP_Andreev/internal/db"
 	"TP_Andreev/internal/db/migrations"
 	"TP_Andreev/internal/transport/http/controller"
@@ -12,12 +12,12 @@ import (
 )
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatalf("congif load failed: %v", err)
 	}
 
-	db, err := db.Connect()
+	db, err := db.Connect(&cfg.Database)
 	if err != nil {
 		log.Fatalf("failed to connect to database: %v", err)
 	}
@@ -43,5 +43,5 @@ func main() {
 
 	// Start server with both router and static handler
 	http.Handle("/", r)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+cfg.Server.Port, nil)
 }

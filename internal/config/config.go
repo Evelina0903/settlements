@@ -57,7 +57,7 @@ func getEnv(key, defaultValue string) string {
 // DSN returns the database connection string
 func (c *DatabaseConfig) DSN() string {
 	return fmt.Sprintf(
-		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
 		c.Host, c.Port, c.User, c.Password, c.Name,
 	)
 }
