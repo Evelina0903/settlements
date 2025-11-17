@@ -103,6 +103,41 @@ To remove volumes (database data):
 docker-compose down -v
 ```
 
+## Data Loading
+
+### Loading Data from CSV
+
+The application includes a data loader that populates the database with employee travel data from a CSV file.
+
+#### Prerequisites
+
+- Docker and Docker Compose running
+- CSV file at `datasets/employee_travel_data.csv`
+
+#### Running the Loader
+
+Once the application is running with `docker-compose up`, load the data:
+
+```bash
+docker-compose exec app ./loader -file datasets/employee_travel_data.csv
+```
+
+The loader will:
+- Parse the CSV file
+- Create employee records
+- Create business trip records
+- Link employees to trips with expense information
+
+To verify the data was loaded:
+
+```bash
+# Check table counts
+docker-compose exec postgres psql -U postgres -d tp_andreev -c "\
+SELECT 'employees' as table_name, COUNT(*) as row_count FROM employees UNION ALL \
+SELECT 'business_trips', COUNT(*) FROM business_trips UNION ALL \
+SELECT 'assignment_to_trips', COUNT(*) FROM assignment_to_trips;"
+```
+
 ## Development
 
 ### Local Development with Air
