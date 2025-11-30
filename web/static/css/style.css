@@ -1,0 +1,53 @@
+.pink-table {
+    background-color: #ffe6f2;
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.pink-table th {
+    background-color: #ffb6c1;
+    color: #fff;
+    text-align: center;
+    padding: 4px !important;
+}
+
+.pink-table td {
+    background-color: #fff0f6;
+    text-align: center;
+    padding: 4px !important;
+}
+
+.pink-table tr:hover td {
+    background-color: #ffd6e6;
+}
+
+.pink-table th, .pink-table td {
+    border-color: #ffcce0 !important;
+}
+
+.pagination .page-link {
+    color: #d63384;
+    border-color: #f8c8dc;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ffb6c1;
+    border-color: #ff9ab3;
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #ffd6e6;
+    border-color: #ffb6c1;
+}
+
+.pagination {
+    gap: 2px;
+}
+
+.text-title {
+    color: #e75757;
+}
