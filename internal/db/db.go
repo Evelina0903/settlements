@@ -1,7 +1,7 @@
 package db
 
 import (
-	"TP_Andreev/internal/config"
+	"settlements/internal/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

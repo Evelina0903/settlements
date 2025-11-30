@@ -4,9 +4,9 @@ import (
 	"flag"
 	"log"
 
-	"TP_Andreev/internal/config"
-	"TP_Andreev/internal/db"
-	"TP_Andreev/internal/service"
+	"settlements/internal/config"
+	"settlements/internal/db"
+	"settlements/internal/service"
 )
 
 func main() {

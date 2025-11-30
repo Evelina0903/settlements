@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"TP_Andreev/internal/models"
+	"settlements/internal/models"
 	"gorm.io/gorm"
 )
 
