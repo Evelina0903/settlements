@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"TP_Andreev/internal/config"
-	"TP_Andreev/internal/db"
-	"TP_Andreev/internal/db/migrations"
-	"TP_Andreev/internal/transport/http/controller"
-	"TP_Andreev/internal/transport/http/router"
+	"settlements/internal/config"
+	"settlements/internal/db"
+	"settlements/internal/db/migrations"
+	"settlements/internal/transport/http/controller"
+	"settlements/internal/transport/http/router"
 )
 
 func main() {
@@ -31,7 +31,6 @@ func main() {
 
 	// Initialize controller
 	pageCtrl := &controller.MainController{}
-	employeeCtrl := &controller.EmployeeController{}
 
 	// Serve static files
 	fs := http.FileServer(http.Dir("web/static"))
@@ -39,7 +38,6 @@ func main() {
 
 	// Register routes
 	r.GET("/", pageCtrl.GetMainPage)
-	r.GET("/employee/:id", employeeCtrl.GetEmployee)
 
 	// Start server with both router and static handler
 	http.Handle("/", r)

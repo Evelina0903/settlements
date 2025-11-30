@@ -4,10 +4,10 @@ import (
 	"html/template"
 	"net/http"
 
-	"TP_Andreev/internal/transport/http/router"
+	"settlements/internal/transport/http/router"
 )
 
-var mainTpl = template.Must(template.ParseFiles("web/templates/main.html"))
+var mainTpl = template.Must(template.ParseFiles("web/templates/index.html"))
 
 type MainController struct{}
 

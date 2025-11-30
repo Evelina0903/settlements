@@ -1,4 +1,4 @@
-module TP_Andreev
+module settlements
 
 go 1.24.0
 
