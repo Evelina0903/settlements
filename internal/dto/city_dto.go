@@ -6,7 +6,7 @@ type CityDTO struct {
 	Type       string
 	District   string
 	Population int
-	Childrens  float32
+	Childrens  int
 	Latitude   float32
 	Longitude  float32
 }
