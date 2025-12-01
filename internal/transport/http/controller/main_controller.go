@@ -10,7 +10,7 @@ import (
 )
 
 type MainController struct {
-	service service.Service
+	service *service.Service
 }
 
 type tmplData struct {
@@ -24,6 +24,10 @@ var tmpl = template.Must(
 		template.New("jsData").Parse(src),
 	).ParseFiles("web/templates/index.html"),
 )
+
+func New(service *service.Service) *MainController {
+	return &MainController{service: service}
+}
 
 func (c *MainController) GetMainPage(w http.ResponseWriter, r *http.Request, params router.Params) {
 	settelmentType := c.service.GetAllSettelmetTypeData()

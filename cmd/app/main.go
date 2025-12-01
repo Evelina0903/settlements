@@ -2,11 +2,14 @@ package main
 
 import (
 	"log"
+
 	"net/http"
 
 	"settlements/internal/config"
 	"settlements/internal/db"
 	"settlements/internal/db/migrations"
+	"settlements/internal/repo"
+	"settlements/internal/service"
 	"settlements/internal/transport/http/controller"
 	"settlements/internal/transport/http/router"
 )
@@ -26,11 +29,15 @@ func main() {
 		log.Fatalf("auto-migrate failed: %v", err)
 	}
 
-	// Initialize router
+	//Initialize router
 	r := router.New()
 
+	repo := repo.New(db)
+
+	service := service.New(repo)
+
 	// Initialize controller
-	pageCtrl := &controller.MainController{}
+	pageCtrl := controller.New(service)
 
 	// Serve static files
 	fs := http.FileServer(http.Dir("web/static"))
