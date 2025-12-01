@@ -29,8 +29,8 @@ function LongitudeChart() {
 }
 
 function DistrictChart() {
-    const labels = chartData1.map(d => d.x);
-    const data = chartData1.map(d => d.y);
+    const labels = chartData2.map(d => d.x);
+    const data = chartData2.map(d => d.y);
 
     const ctx = document.getElementById('barChart').getContext('2d');
     new Chart(ctx, {

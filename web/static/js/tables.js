@@ -14,7 +14,7 @@ function renderTable(page = 1) {
             <tr>
                 <td>${item.type}</td>
                 <td>${item.avgPopulation}</td>
-                <td>${item.childrenPercent}</td>
+                <td>${item.avgChildrens}</td>
                 <td>${item.minPopulation}</td>
                 <td>${item.maxPopulation}</td>
             </tr>`;
@@ -23,7 +23,7 @@ function renderTable(page = 1) {
 }
 
 function renderPagination() {
-    const totalPages = Math.ceil(data.length / rowsPerPage);
+    const totalPages = Math.ceil(tableData.length / rowsPerPage);
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
