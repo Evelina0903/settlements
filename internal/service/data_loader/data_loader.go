@@ -60,15 +60,13 @@ func (dl *DataLoader) processRow(record []string) error {
 	typ := strings.TrimSpace(record[4])
 	populationStr := strings.TrimSpace(record[5])
 	childrenStr := strings.TrimSpace(record[6])
-	latitudeStr := strings.TrimSpace(record[10])
-	longitudeStr := strings.TrimSpace(record[11])
+	latitudeStr := strings.TrimSpace(record[9])
+	longitudeStr := strings.TrimSpace(record[10])
 
 	population, _ := strconv.Atoi(populationStr)
 	childrens, _ := strconv.Atoi(childrenStr)
-	latitudeF64, _ := strconv.ParseFloat(latitudeStr, 32)
-	longitudeF64, _ := strconv.ParseFloat(longitudeStr, 32)
-	latitude := float32(latitudeF64)
-	longitude := float32(longitudeF64)
+	latitude, _ := strconv.ParseFloat(latitudeStr, 64)
+	longitude, _ := strconv.ParseFloat(longitudeStr, 64)
 
 	if population == 0 {
 		return nil
@@ -86,17 +84,17 @@ func (dl *DataLoader) processRow(record []string) error {
 		return fmt.Errorf("failed to create/find district: %w", err)
 	}
 
-	err = dl.db.Create(
-		&models.City{
-			Name:       settlement,
-			TypeID:     typeM.ID,
-			DistrictID: district.ID,
-			Population: population,
-			Childrens:  childrens,
-			Latitude: latitude,
-			Longitude: longitude,
-		},
-	). Error
+	city := models.City{
+		Name:       settlement,
+		TypeID:     typeM.ID,
+		DistrictID: district.ID,
+		Population: population,
+		Childrens:  childrens,
+		Latitude:   latitude,
+		Longitude:  longitude,
+	}
+
+	err = dl.db.Create(&city).Error
 	if err != nil {
 		return fmt.Errorf("failed to create city: %w", err)
 	}
