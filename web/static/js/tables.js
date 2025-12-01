@@ -23,7 +23,7 @@ function renderTable(page = 1) {
 }
 
 function renderPagination() {
-    const totalPages = Math.ceil(data.length / rowsPerPage);
+    const totalPages = Math.ceil(tableData.length / rowsPerPage);
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
