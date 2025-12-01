@@ -12,7 +12,7 @@ type Service struct {
 type SettlementTypeData struct {
 	Type          string  `json:"type"`
 	AvgPopulation float32 `json:"avgPopulation"`
-	AvgChildrens  float32 `json:"childrenPercent"`
+	AvgChildrens  float32 `json:"avgChildrens"`
 	MinPopulation int     `json:"minPopulation"`
 	MaxPopulation int     `json:"maxPopulation"`
 }
@@ -144,7 +144,7 @@ func (s *Service) GetDistrictPopulationData() *[]GraphData {
 	}
 
 	sort.Slice(res, func(i, j int) bool {
-		return res[i].Y < res[j].Y
+		return res[i].Y > res[j].Y
 	})
 
 	return &res
