@@ -14,7 +14,7 @@ function renderTable(page = 1) {
             <tr>
                 <td>${item.type}</td>
                 <td>${item.avgPopulation}</td>
-                <td>${item.childrenPercent}</td>
+                <td>${item.avgChildrens}</td>
                 <td>${item.minPopulation}</td>
                 <td>${item.maxPopulation}</td>
             </tr>`;
