@@ -68,11 +68,11 @@ func (s *Service) GetAllSettelmetTypeData() *[]SettlementTypeData {
 
 		_, ok = maxPopulation[d.Type]
 		if ok {
-			if d.Population > minPopulation[d.Type] {
-				minPopulation[d.Type] = d.Population
+			if d.Population > maxPopulation[d.Type] {
+				maxPopulation[d.Type] = d.Population
 			}
 		} else {
-			minPopulation[d.Type] = d.Population
+			maxPopulation[d.Type] = d.Population
 		}
 	}
 
