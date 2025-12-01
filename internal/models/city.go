@@ -8,7 +8,7 @@ type City struct {
 	Type       Type
 	District   District
 	Population int     `gorm:"type:int;not null"`
-	Childrens  float32 `gorm:"type:float;not null"`
+	Childrens  int     `gorm:"type:int;not null"`
 	Latitude   float32 `gorm:"type:float;not null"`
 	Longitude  float32 `gorm:"type:float;not null"`
 }
