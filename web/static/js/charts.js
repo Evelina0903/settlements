@@ -1,5 +1,5 @@
 function LongitudeChart() {
-    const labels = chartData1.map(d => d.x);
+    const labels = chartData1.map(d => d.x.toFixed(3));
     const data = chartData1.map(d => d.y);
 
     const ctx = document.getElementById('lineChart').getContext('2d');
@@ -10,6 +10,7 @@ function LongitudeChart() {
             datasets: [{
                 label: '',
                 data: data,
+                fill: true,
                 borderColor: '#d63384',
                 backgroundColor: 'rgba(214, 51, 132, 0.2)',
                 tension: 0.3,
@@ -50,7 +51,14 @@ function DistrictChart() {
                 legend: { display: false }
             },
             scales: {
-                y: { beginAtZero: true }
+                y: { beginAtZero: true },
+                x: {
+                    ticks: {
+                        callback: function(value, index) {
+                            return this.getLabelForValue(value).substring(0, 15)
+                        }
+                    }
+                }
             }
         }
     });
