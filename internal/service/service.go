@@ -89,6 +89,10 @@ func (s *Service) GetAllSettelmetTypeData() *[]SettlementTypeData {
 		res = append(res, typeData)
 	}
 
+	sort.Slice(res, func(i, j int) bool {
+		return res[i].AvgPopulation > res[j].AvgPopulation
+	})
+
 	return &res
 }
 
